@@ -34,10 +34,6 @@ body {
   background-position: top;
   clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
 }
 
 .logo-box {
@@ -49,12 +45,15 @@ body {
 .logo {
   height: 35px;
 }
-/* 
 .text-box {
-  position: absolute;
-  top: 50%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   left: 50%;
-} */
+  position: absolute;
+  top: 40%;
+  transform: translate(-50%, -50%);
+}
 
 .heading-primary {
   color: #fff;
@@ -82,6 +81,7 @@ body {
   font-weight: 400;
   letter-spacing: 17.4px;
   animation: moveInRight 2s ease-out;
+  margin-bottom: 20px;
 }
 
 @keyframes moveInLeft {
@@ -116,6 +116,19 @@ body {
   }
 }
 
+@keyframes moveInBotton {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform: translateY(0px);
+  }
+}
+
 .btn:link,
 .btn:visited {
   text-transform: uppercase;
@@ -123,10 +136,13 @@ body {
   padding: 15px 40px;
   display: inline-block;
   border-radius: 100px;
+  transition: all 0.2s;
+  position: relative;
 }
 
 .btn:hover {
   transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
 }
 
 .btn:active {
@@ -136,4 +152,29 @@ body {
 .btn-white {
   background-color: #fff;
   color: #777;
+}
+
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+.btn:hover::after {
+  transform: scaleX(1.4) scaleY(1.6);
+  opacity: 0;
+}
+.button-animated {
+  animation: moveInBotton 0.5s ease-out 0.75s;
+  animation-fill-mode: backwards;
 }
